@@ -1,0 +1,8 @@
+#! /bin/sh
+service apache2 start
+ssserver -C /etc/shadowsocks.json -d restart
+if [ $? -ne 0 ]; then
+echo "hard restart"
+ssserver -C /etc/shadowsocks.json -d stop
+ssserver -C /etc/shadowsocks.json -d start
+fi
