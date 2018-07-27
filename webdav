@@ -1,0 +1,17 @@
+DavLockDB /var/www/DavLock
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html/aether/webdav/
+    ErrorLog  /etc/apache2/error.log
+    CustomLog /etc/apache2/access.log combined
+        Alias /aether/webdav /var/www/html/aether/webdav
+        <Directory /var/www/html/aether/webdav>
+            DAV On
+            AuthType Digest
+            AuthName "webdav"
+            AuthUserFile /etc/apache2/users.password
+            Require valid-user
+        </Directory>
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
