@@ -1,8 +1,10 @@
 #! /bin/sh
-service apache2 start
-ssserver -C /etc/shadowsocks.json -d restart
+echo "AutoStart" > log
+date >> log
+echo "" >> log
+/usr/local/bin/ssserver -c /root/shadowsocks.json -d restart 2>> log
 if [ $? -ne 0 ]; then
-echo "hard restart"
-ssserver -C /etc/shadowsocks.json -d stop
-ssserver -C /etc/shadowsocks.json -d start
+echo "hard restart" >> log
+/usr/local/bin/ssserver -c /root/shadowsocks.json -d stop  2>> log
+/usr/local/bin/ssserver -c /root/shadowsocks.json -d start 2>> log
 fi
